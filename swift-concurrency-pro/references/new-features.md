@@ -1,6 +1,6 @@
 # Swift 6.2 concurrency
 
-Use this file for recent concurrency changes that materially affect review advice.
+Use this file for recent concurrency changes that materially affect review advice. For new projects, treat these Swift 6.2 behaviors as the recommended baseline. For older projects, suggest upgrading to a toolchain that supports them before falling back to older assumptions.
 
 ## Control default actor isolation inference
 
