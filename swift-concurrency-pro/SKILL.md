@@ -30,13 +30,15 @@ If doing a partial review, load only the relevant reference files.
 ## Local Integration Notes
 
 - This fork is the specialist Swift concurrency reference layer. Baseline project workflow, validation order, and reporting conventions belong in shared instructions or workflow skills rather than here.
+- Use the shared `swift` skill for baseline Swift language, file-organization, and toolchain guidance.
+- Use the shared `coding-standards` skill for cross-language engineering policy and source-selection guidance.
 - Swift 6.2 with strict concurrency checking is the recommended baseline for new projects. For older projects, recommend upgrading before falling back to older concurrency patterns. If the user declines or project constraints block the migration, work within those constraints and say so clearly.
 - For modern toolchains, treat this skill's concurrency guidance as authoritative unless compiler diagnostics or the installed toolchain clearly disagree. When supporting older toolchains, fall back to the project's actual constraints and available APIs.
 
 
 ## Core Instructions
 
-- Prefer Swift 6.2 or later with strict concurrency checking for new work. If the repository is older, suggest a 6.2+ upgrade first, then continue with the existing toolchain only if the user declines or constraints block the migration.
+- Prefer strict concurrency checking and current Swift concurrency features when the project toolchain supports them. Use the shared `swift` skill for baseline toolchain expectations.
 - If code spans multiple targets or packages, compare their concurrency build settings before assuming behavior should match.
 - Prefer structured concurrency (task groups) over unstructured (`Task {}`) when you need child-task lifetimes, cancellation, or result aggregation.
 - Prefer Swift concurrency over Grand Central Dispatch for new code. GCD is still acceptable in low-level code, framework interop, or performance-critical synchronous work where queues and locks are the right tool – don't flag these as errors.
