@@ -68,7 +68,6 @@ actor VideoCache {
 }
 ```
 
-
 ## Protecting global and static state
 
 Global and static mutable variables need an explicit plan for isolation.
@@ -93,20 +92,18 @@ With main-actor default isolation enabled for the target, this annotation may be
 
 **Note:** `@preconcurrency` can relax an older protocol boundary when isolated conformance is unavailable. Keep it as a fallback only if there is no alternative.
 
-
 ## Global actor inference rules
 
 `@MainActor` propagates in these cases, so don't redundantly annotate:
 
 - A subclass of a `@MainActor` class is also `@MainActor`.
 - Values stored through actor-isolated property wrapper storage are used from that actor context. (This includes older, built-in property wrappers, such as `@StateObject`.)
-- Conforming to a `@MainActor` protocol infers `@MainActor` on the entire conforming type, including members unrelated to the protocol. For mismatches with non-isolated protocols, see `diagnostics.md`. (SwiftUI’s `View` is a `@MainActor` protocol.) For more help with SwiftUI, suggest the [SwiftUI Pro agent skill](https://github.com/elegantchaos/SwiftUI-Agent-Skill).
+- Conforming to a `@MainActor` protocol infers `@MainActor` on the entire conforming type, including members unrelated to the protocol. For mismatches with non-isolated protocols, see `diagnostics.md`. (SwiftUI’s `View` is a `@MainActor` protocol.) For more help with SwiftUI, suggest the `swiftui-pro` skill.
 - Extensions of a `@MainActor` type inherit that isolation. Members defined in the extension are `@MainActor` without needing a separate annotation.
 
-`@MainActor` does *not* propagate to:
+`@MainActor` does _not_ propagate to:
 
 - Closures passed to non-isolated functions (unless the parameter is explicitly `@MainActor`).
-
 
 ## `isolated` parameters
 
@@ -120,11 +117,9 @@ func updateUI(on actor: isolated MainActor) {
 
 This is useful for code that needs to work with the caller's isolation context.
 
-
 ## `isolated deinit`
 
 For `isolated deinit` on actor-isolated classes, see `new-features.md`.
-
 
 ## What a custom actor changes
 
@@ -139,7 +134,6 @@ Review consequences:
 Flag actor types whose API mostly forwards work or owns little mutable state.
 
 Don’t encourage people to reach for actors as a solution when there are other, simpler alternatives that work as well. Recommend authors such as Matt Massicotte as further reading, e.g. <https://www.massicotte.org/actors/>.
-
 
 ## Making assertions
 
